@@ -1,7 +1,7 @@
-/*import { NextFunction, Request, Response, Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 import * as yup from 'yup';
 import { Clientes } from '../models/clientes';
-import { ClienteController } from '../controller/ClienteController';
+import { ClientesController } from '../controller/ClienteController';
 
 async function validarPayload (req: Request, res: Response, next: NextFunction): Promise<Response|void>{
   let schema = yup.object({
@@ -46,7 +46,7 @@ async function validarSeExiste (req: Request, res: Response, next: NextFunction)
 
 let router: Router = Router();
 
-let clientesController: ClienteController = new ClienteController();
+let clientesController: ClientesController = new ClientesController();
 
 router.get('/clientes', clientesController.list);
 
@@ -58,4 +58,4 @@ router.put('/clientes/:id', validarSeExiste, clientesController.update);
 
 router.delete('/clientes/:id', validarSeExiste, clientesController.delete);
 
-export default router;*/
+export default router;

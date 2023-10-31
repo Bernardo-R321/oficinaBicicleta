@@ -1,4 +1,4 @@
-/*import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Cidades } from "./cidades";
 import internal from "stream";
 
@@ -28,4 +28,4 @@ export class Clientes extends BaseEntity {
     @Column()
     public estado: string;
 
-}*/
+}
