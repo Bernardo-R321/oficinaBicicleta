@@ -7,7 +7,10 @@
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/app.ts' -e ts",
     "start": "rm -rf ./dist && tsc && node dist/Start.js",
     "typeorm": "typeorm-ts-node-commonjs",
-    "build": "tsc"
+    "build": "tsc",
+    "app": "rimraf ./dist && tsc && node ./dist/app.js",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "dev": "nodemon src/app.ts"
   },
   "author": "",
   "license": "ISC",

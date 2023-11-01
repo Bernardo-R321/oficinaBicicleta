@@ -46,6 +46,12 @@ export class ClientesController {
         let cliente: Clientes = res.locals.cliente;
     
         cliente.nome = body.nome,
+        cliente.cpf = body.cpf,
+        cliente.email = body.email,
+        cliente.telefone = body.telefone,
+        cliente.endereco = body.endereco,
+        cliente.id_cidade = body.id_cidade,
+        cliente.estado = body.estado,
         await cliente.save();
     
         return res.status(200).json(cliente);
