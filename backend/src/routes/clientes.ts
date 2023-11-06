@@ -11,7 +11,6 @@ async function validarPayload (req: Request, res: Response, next: NextFunction):
     telefone: yup.string().min(3).max(15).required(),
     endereco: yup.string().min(3).max(255).required(),
     id_cidade: yup.number().required(),
-    estado: yup.string().min(3).max(255).required(),
   })
 
   let payload = req.body;

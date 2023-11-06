@@ -44,11 +44,11 @@ let cidadeController: CidadesController = new CidadesController();
 
 router.get('/cidades', cidadeController.list);
 
-router.get('/cidades/:id', validarSeExiste, cidadeController.find);
+router.get('/cidades/:id',validarPayload, validarSeExiste, cidadeController.find);
 
 router.post('/cidades', validarPayload, cidadeController.create);
 
-router.put('/cidades/:id', validarSeExiste, cidadeController.update);
+router.put('/cidades/:id', validarPayload, validarSeExiste, cidadeController.update);
 
 router.delete('/cidades/:id', validarSeExiste, cidadeController.delete);
 

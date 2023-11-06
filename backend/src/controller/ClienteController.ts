@@ -21,7 +21,6 @@ export class ClientesController {
             telefone: body.telefone,
             endereco: body.endereco,
             id_cidade: body.id_cidade,
-            estado: body.estado,
         }).save();
     
         return res.status(200).json(cliente);
@@ -51,7 +50,6 @@ export class ClientesController {
         cliente.telefone = body.telefone,
         cliente.endereco = body.endereco,
         cliente.id_cidade = body.id_cidade,
-        cliente.estado = body.estado,
         await cliente.save();
     
         return res.status(200).json(cliente);

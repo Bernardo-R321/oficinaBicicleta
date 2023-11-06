@@ -25,7 +25,4 @@ export class Clientes extends BaseEntity {
     @Column()
     public id_cidade: number;
 
-    @Column()
-    public estado: string;
-
 }
