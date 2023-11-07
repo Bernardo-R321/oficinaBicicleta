@@ -49,7 +49,7 @@ let clientesController: ClientesController = new ClientesController();
 
 router.get('/clientes', clientesController.list);
 
-router.get('/clientes/:id', validarPayload, validarSeExiste, clientesController.find);
+router.get('/clientes/:id', validarSeExiste, clientesController.find);
 
 router.post('/clientes', validarPayload, clientesController.create);
 

@@ -34,9 +34,9 @@ export class ClientesController {
     }
 
     async find (req: Request, res: Response): Promise<Response> {
-        let Cliente: Clientes = res.locals.Cliente;
+        let cliente: Clientes = res.locals.cliente;
   
-        return res.status(200).json(Cliente);
+        return res.status(200).json(cliente);
     }
 
    
