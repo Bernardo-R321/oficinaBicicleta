@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne} from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany} from "typeorm";
+import { Clientes } from "./clientes";
 
 @Entity('cidades')
 export class Cidades extends BaseEntity {
@@ -7,5 +8,8 @@ export class Cidades extends BaseEntity {
 
   @Column()
   public nome: string;
+
+  @OneToMany(() => Clientes, (clientes) => clientes.cidade)
+    public clientes: Clientes[];
 
 }

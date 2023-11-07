@@ -1,6 +1,6 @@
-import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Cidades } from "./cidades";
-import internal from "stream";
+
 
 @Entity('clientes')
 export class Clientes extends BaseEntity {
@@ -24,5 +24,10 @@ export class Clientes extends BaseEntity {
 
     @Column()
     public id_cidade: number;
+
+    @ManyToOne(() => Cidades, (cidade) => cidade.clientes, {
+        eager: true})
+    @JoinColumn({ name: 'id_cidade' })
+    public cidade: Cidades;
 
 }
