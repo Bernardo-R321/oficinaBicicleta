@@ -3,6 +3,7 @@ import cors from 'cors';
 import usuarioRoutes from './routes/usuario';
 import cidadeRoutes from './routes/cidades';
 import clienteRoutes from './routes/clientes';
+import statusRoutes from './routes/status';
 
 let server: Express = express();
 
@@ -18,6 +19,7 @@ server.use((req: Request, res: Response, next: NextFunction) => {
 server.use(usuarioRoutes);
 server.use(cidadeRoutes);
 server.use(clienteRoutes);
+server.use(statusRoutes);
 
 export default {
     start() {
