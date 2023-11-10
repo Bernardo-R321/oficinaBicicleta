@@ -10,6 +10,6 @@ export class Status extends BaseEntity {
   public nome: string;
 
   @Column()
-  public tipo: number;
+  public tipo: string;
 
 }

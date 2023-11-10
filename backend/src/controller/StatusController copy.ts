@@ -16,6 +16,7 @@ export class StatusController {
        
         let status: Status = await Status.create({
             nome: body.nome,
+            tipo: body.tipo
         }).save();
     
         return res.status(200).json(status);
@@ -40,6 +41,7 @@ export class StatusController {
         let status: Status = res.locals.status;
     
         status.nome = body.nome,
+        status.tipo = body.tipo,
         await status.save();
     
         return res.status(200).json(status);

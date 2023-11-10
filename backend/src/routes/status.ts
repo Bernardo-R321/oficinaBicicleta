@@ -7,7 +7,7 @@ import * as yup from 'yup';
 async function validarPayload (req: Request, res: Response, next: NextFunction): Promise<Response|void>{
   let schema = yup.object({
     nome: yup.string().min(3).max(255).required(),
-    tipo: yup.number()
+    tipo: yup.string().min(1).max(1).required(),
   })
 
   let payload = req.body;
@@ -31,7 +31,7 @@ async function validarSeExiste (req: Request, res: Response, next: NextFunction)
 
     let status: Status|null = await Status.findOneBy({ id });
     if (! status) {
-      return res.status(422).json({ error: 'Status não encontrada!' });
+      return res.status(422).json({ error: 'Status não encontrado!' });
     }
 
   res.locals.status = status;
