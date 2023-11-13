@@ -1,0 +1,24 @@
+* {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-image: url('../../images/imagem-login.jpg');
+}
+
+.login-box {
+  background-color: white;
+  width: 200px;
+  height: 300px;
+  text-align: center;
+}
