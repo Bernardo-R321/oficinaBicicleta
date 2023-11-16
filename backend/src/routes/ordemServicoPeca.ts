@@ -29,7 +29,7 @@ async function validarSeExiste (req: Request, res: Response, next: NextFunction)
 
     let ordemServicoPeca: OrdemServicoPeca|null = await OrdemServicoPeca.findOneBy({ id });
     if (! OrdemServicoPeca) {
-      return res.status(422).json({ error: 'Cidade não encontrada!' });
+      return res.status(422).json({ error: 'Pedido não encontrada!' });
     }
 
   res.locals.ordemServicoPeca = ordemServicoPeca;
@@ -42,14 +42,14 @@ let router: Router = Router();
 
 let ordemServicoPecaController: OrdemServicoPecaController = new OrdemServicoPecaController();
 
-router.get('/cidades', ordemServicoPecaController.list);
+router.get('/ordemServicoPeca', ordemServicoPecaController.list);
 
-router.get('/cidades/:id',validarPayload, validarSeExiste, ordemServicoPecaController.find);
+router.get('/ordemServicoPeca/:id',validarPayload, validarSeExiste, ordemServicoPecaController.find);
 
-router.post('/cidades', validarPayload, ordemServicoPecaController.create);
+router.post('/ordemServicoPeca', validarPayload, ordemServicoPecaController.create);
 
-router.put('/cidades/:id', validarPayload, validarSeExiste, ordemServicoPecaController.update);
+router.put('/ordemServicoPeca/:id', validarPayload, validarSeExiste, ordemServicoPecaController.update);
 
-router.delete('/cidades/:id', validarSeExiste, ordemServicoPecaController.delete);
+router.delete('/ciordemServicoPeca/:id', validarSeExiste, ordemServicoPecaController.delete);
 
 export default router;

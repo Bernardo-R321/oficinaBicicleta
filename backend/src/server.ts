@@ -5,6 +5,8 @@ import cidadeRoutes from './routes/cidades';
 import clienteRoutes from './routes/clientes';
 import statusRoutes from './routes/status';
 import ordemRoutes from './routes/status';
+import peca from './routes/peças';
+import ordemServicoPeca from './routes/status';
 
 let server: Express = express();
 
@@ -22,6 +24,8 @@ server.use(cidadeRoutes);
 server.use(clienteRoutes);
 server.use(statusRoutes);
 server.use(ordemRoutes);
+server.use(peca);
+server.use(ordemServicoPeca);
 
 export default {
     start() {
