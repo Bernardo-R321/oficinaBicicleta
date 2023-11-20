@@ -6,6 +6,7 @@ import clienteRoutes from './routes/clientes';
 import statusRoutes from './routes/status';
 import ordemRoutes from './routes/OrdemServico';
 
+
 let server: Express = express();
 
 let port: number = Number(process.env.SERVER_PORT || 3000);
@@ -22,6 +23,8 @@ server.use(cidadeRoutes);
 server.use(clienteRoutes);
 server.use(statusRoutes);
 server.use(ordemRoutes);
+server.use(peca);
+server.use(ordemServicoPeca);
 
 export default {
     start() {
