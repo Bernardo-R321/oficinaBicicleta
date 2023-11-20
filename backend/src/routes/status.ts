@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { Status } from '../models/status';
-import { StatusController } from '../controller/StatusController copy';
+import { StatusController } from '../controller/StatusController'
 import * as yup from 'yup';
 
 
-async function validarPayload (req: Request, res: Response, next: NextFunction): Promise<Response|void>{
+async function validarPayload(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   let schema = yup.object({
     nome: yup.string().min(3).max(255).required(),
     tipo: yup.string().min(1).max(1).required(),
@@ -12,31 +12,31 @@ async function validarPayload (req: Request, res: Response, next: NextFunction):
 
   let payload = req.body;
 
-  try{
-  let resultado = await schema.validate(payload, { abortEarly: false, stripUnknown: true });
-  return next();
-  }catch(error){
-    if (error){
-      if (error instanceof yup.ValidationError){
-        return res.status(400).json({errors: error.errors});
+  try {
+    let resultado = await schema.validate(payload, { abortEarly: false, stripUnknown: true });
+    return next();
+  } catch (error) {
+    if (error) {
+      if (error instanceof yup.ValidationError) {
+        return res.status(400).json({ errors: error.errors });
       }
-      return res.status(500).json({ error: 'Ops! Algo deu errado!'});
+      return res.status(500).json({ error: 'Ops! Algo deu errado!' });
     }
 
   }
 }
 
-async function validarSeExiste (req: Request, res: Response, next: NextFunction): Promise<Response|void> {
-    let id = Number(req.params.id);
+async function validarSeExiste(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+  let id = Number(req.params.id);
 
-    let status: Status|null = await Status.findOneBy({ id });
-    if (! status) {
-      return res.status(422).json({ error: 'Status não encontrado!' });
-    }
+  let status: Status | null = await Status.findOneBy({ id });
+  if (!status) {
+    return res.status(422).json({ error: 'Status não encontrado!' });
+  }
 
   res.locals.status = status;
 
-    return next();
+  return next();
 }
 
 
@@ -46,7 +46,7 @@ let statusController: StatusController = new StatusController();
 
 router.get('/status', statusController.list);
 
-router.get('/status/:id',validarPayload, validarSeExiste, statusController.find);
+router.get('/status/:id', validarPayload, validarSeExiste, statusController.find);
 
 router.post('/status', validarPayload, statusController.create);
 

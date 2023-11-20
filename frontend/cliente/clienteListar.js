@@ -1,6 +1,6 @@
 let corpoTabela = document.getElementById('corpo-tabela');
 
-async function buscarCliente () {
+async function buscarCliente() {
   let resposta = await fetch('http://localhost:3000/clientes');
   let clientes = await resposta.json();
 
@@ -17,7 +17,7 @@ async function buscarCliente () {
       <button class="btn btn-outline-danger btn-sm" onclick="excluir(${cliente.id})">Excluir</button>
     `;
 
-    tdAcoes.classList = "text-center";
+    tdAcoes.classList = 'text-center';
     tr.appendChild(tdNome);
     tr.appendChild(tdCPF);
     tr.appendChild(tdAcoes);
@@ -26,16 +26,17 @@ async function buscarCliente () {
   }
 }
 
-async function excluir (id) {
-  let confirma = confirm("Deseja excluir esse cliente? Esta ação não pode ser revertida.")
-  if(confirma) {
+async function excluir(id) {
+  let confirma = confirm(
+    'Deseja excluir esse cliente? Esta ação não pode ser revertida.'
+  );
+  if (confirma) {
     await fetch('http://localhost:3000/clientes/' + id, {
-    method: 'DELETE'
-  });
+      method: 'DELETE',
+    });
 
-  window.location.reload();
+    window.location.reload();
   }
-  
 }
 
 buscarCliente();

@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { OrdemServico } from "./OrdemServico";
 
 
 @Entity('status')
@@ -11,5 +12,8 @@ export class Status extends BaseEntity {
 
   @Column()
   public tipo: string;
+
+  @OneToMany(() => OrdemServico, (ordem) => ordem.status)
+  public ordemServico: OrdemServico[]
 
 }

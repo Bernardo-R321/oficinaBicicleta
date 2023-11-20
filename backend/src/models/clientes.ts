@@ -1,5 +1,6 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Cidades } from "./cidades";
+import { OrdemServico } from "./OrdemServico";
 
 
 @Entity('clientes')
@@ -26,8 +27,12 @@ export class Clientes extends BaseEntity {
     public id_cidade: number;
 
     @ManyToOne(() => Cidades, (cidade) => cidade.clientes, {
-        eager: true})
+        eager: true
+    })
     @JoinColumn({ name: 'id_cidade' })
     public cidade: Cidades;
+
+    @OneToMany(() => OrdemServico, (ordem) => ordem.cliente)
+    public ordemServico: OrdemServico[]
 
 }

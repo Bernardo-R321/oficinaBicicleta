@@ -2,9 +2,10 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
 let inputNome = document.getElementById('nome');
+let inputTipo = document.getElementById('tipo');
 let form = document.getElementById('formulario');
 
-async function buscarDados () {
+async function buscarDados() {
   let resposta = await fetch('http://localhost:3000/status/' + id);
   if (resposta.ok) {
     let status = await resposta.json();
@@ -31,7 +32,8 @@ form.addEventListener('submit', async (event) => {
 
   let payload = {
     nome,
-  }
+    tipo,
+  };
 
   let url = 'http://localhost:3000/status';
   let method = 'POST';
@@ -44,13 +46,13 @@ form.addEventListener('submit', async (event) => {
     method: method,
     headers: {
       'Content-type': 'application/json',
-      'Accept': 'application/json'
+      Accept: 'application/json',
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   });
 
   if (resposta.ok) {
-    window.location.href = 'status.html'
+    window.location.href = 'status.html';
   } else {
     alert('Ops! Algo deu errado!');
   }

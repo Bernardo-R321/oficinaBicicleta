@@ -3,38 +3,38 @@ import { CidadesController } from '../controller/CidadeController';
 import * as yup from 'yup';
 import { Cidades } from '../models/cidades';
 
-async function validarPayload (req: Request, res: Response, next: NextFunction): Promise<Response|void>{
+async function validarPayload(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   let schema = yup.object({
     nome: yup.string().min(3).max(255).required(),
   })
 
   let payload = req.body;
 
-  try{
-  let resultado = await schema.validate(payload, { abortEarly: false, stripUnknown: true });
-  return next();
-  }catch(error){
-    if (error){
-      if (error instanceof yup.ValidationError){
-        return res.status(400).json({errors: error.errors});
+  try {
+    let resultado = await schema.validate(payload, { abortEarly: false, stripUnknown: true });
+    return next();
+  } catch (error) {
+    if (error) {
+      if (error instanceof yup.ValidationError) {
+        return res.status(400).json({ errors: error.errors });
       }
-      return res.status(500).json({ error: 'Ops! Algo deu errado!'});
+      return res.status(500).json({ error: 'Ops! Algo deu errado!' });
     }
 
   }
 }
 
-async function validarSeExiste (req: Request, res: Response, next: NextFunction): Promise<Response|void> {
-    let id = Number(req.params.id);
+async function validarSeExiste(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+  let id = Number(req.params.id);
 
-    let cidade: Cidades|null = await Cidades.findOneBy({ id });
-    if (! cidade) {
-      return res.status(422).json({ error: 'Cidade não encontrada!' });
-    }
+  let cidade: Cidades | null = await Cidades.findOneBy({ id });
+  if (!cidade) {
+    return res.status(422).json({ error: 'Cidade não encontrada!' });
+  }
 
   res.locals.cidade = cidade;
 
-    return next();
+  return next();
 }
 
 
@@ -44,12 +44,14 @@ let cidadeController: CidadesController = new CidadesController();
 
 router.get('/cidades', cidadeController.list);
 
-router.get('/cidades/:id',validarPayload, validarSeExiste, cidadeController.find);
+router.get('/cidades/:id', validarPayload, validarSeExiste, cidadeController.find);
 
 router.post('/cidades', validarPayload, cidadeController.create);
 
 router.put('/cidades/:id', validarPayload, validarSeExiste, cidadeController.update);
 
 router.delete('/cidades/:id', validarSeExiste, cidadeController.delete);
+
+router.get('/cidades/pdf', cidadeController.pdf);
 
 export default router;
