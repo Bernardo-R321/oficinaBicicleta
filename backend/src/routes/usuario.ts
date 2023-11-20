@@ -44,7 +44,7 @@ router.get('/usuarios', usuarioController.list);
 
 router.get('/usuarios/:id', validarSeExiste, usuarioController.find);
 
-router.post('/usuarios', validarPayload, validarSeExiste, usuarioController.create);
+router.post('/usuarios', validarPayload, usuarioController.create);
 
 router.put('/usuarios/:id', validarPayload, validarSeExiste, usuarioController.update);
 

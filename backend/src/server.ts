@@ -4,9 +4,8 @@ import usuarioRoutes from './routes/usuario';
 import cidadeRoutes from './routes/cidades';
 import clienteRoutes from './routes/clientes';
 import statusRoutes from './routes/status';
-import ordemRoutes from './routes/status';
-import peca from './routes/peças';
-import ordemServicoPeca from './routes/status';
+import ordemRoutes from './routes/OrdemServico';
+
 
 let server: Express = express();
 

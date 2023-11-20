@@ -9,7 +9,7 @@ let inputEndereco = document.getElementById('endereco');
 let campoCidades = document.getElementById('cidades');
 let form = document.getElementById('formulario');
 
-async function buscarDados () {
+async function buscarDados() {
   let resposta = await fetch('http://localhost:3000/clientes/' + id);
   if (resposta.ok) {
     let cliente = await resposta.json();
@@ -19,7 +19,6 @@ async function buscarDados () {
     inputTelefone.value = cliente.telefone;
     inputEndereco.value = cliente.endereco;
     campoCidades.value = cliente.cidade.id;
-
   } else if (resposta.status === 422) {
     let e = await resposta.json();
     alert(e.error);
@@ -49,8 +48,8 @@ form.addEventListener('submit', async (event) => {
     email,
     telefone,
     endereco,
-    id_cidade
-  }
+    id_cidade,
+  };
 
   let url = 'http://localhost:3000/clientes';
   let method = 'POST';
@@ -63,19 +62,19 @@ form.addEventListener('submit', async (event) => {
     method: method,
     headers: {
       'Content-type': 'application/json',
-      'Accept': 'application/json'
+      Accept: 'application/json',
     },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   });
 
   if (resposta.ok) {
-    window.location.href = 'cliente.html'
+    window.location.href = 'cliente.html';
   } else {
     alert('Ops! Algo deu errado!');
   }
 });
 
-async function buscarCidades () {
+async function buscarCidades() {
   let resposta = await fetch('http://localhost:3000/cidades');
   let cidades = await resposta.json();
 
@@ -89,12 +88,12 @@ async function buscarCidades () {
   }
 }
 
-async function init () {
-  console.log("init")
-  await buscarCidades()
+async function init() {
+  console.log('init');
+  await buscarCidades();
   if (id) {
     buscarDados();
-  } 
+  }
 }
 
 init();

@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { OrdemServico } from "./OrdemServico";
 
 @Entity('usuarios')
 export class Usuarios extends BaseEntity {
@@ -14,4 +15,7 @@ export class Usuarios extends BaseEntity {
 
     @Column()
     public senha: string
+
+    @OneToMany(() => OrdemServico, (ordem) => ordem.usuario)
+    public ordemServico: OrdemServico[]
 }

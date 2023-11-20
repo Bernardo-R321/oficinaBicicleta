@@ -1,6 +1,7 @@
 let corpoTabela = document.getElementById('corpo-tabela');
+let buttonPDF = document.getElementById('pdf');
 
-async function buscarCidade () {
+async function buscarCidade() {
   let resposta = await fetch('http://localhost:3000/cidades');
   let cidades = await resposta.json();
 
@@ -15,7 +16,7 @@ async function buscarCidade () {
       <button class="btn btn-outline-danger btn-sm" onclick="excluir(${cidade.id})">Excluir</button>
     `;
 
-    tdAcoes.classList = "text-center";
+    tdAcoes.classList = 'text-center';
     tr.appendChild(tdNome);
     tr.appendChild(tdAcoes);
 
@@ -23,16 +24,40 @@ async function buscarCidade () {
   }
 }
 
-async function excluir (id) {
-  let confirma = confirm("Deseja excluir essa cidades? Esta ação não pode ser revertida.")
-  if(confirma) {
+async function excluir(id) {
+  let confirma = confirm(
+    'Deseja excluir essa cidades? Esta ação não pode ser revertida.'
+  );
+  if (confirma) {
     await fetch('http://localhost:3000/cidades/' + id, {
-    method: 'DELETE'
-  });
+      method: 'DELETE',
+    });
 
-  window.location.reload();
+    window.location.reload();
   }
-  
 }
+
+function download(content, mimeType, filename) {
+  const a = document.createElement('a');
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  a.setAttribute('href', url);
+  a.setAttribute('download', filename);
+  a.click();
+}
+
+async function baixarPdf() {
+  let resposta = await fetch('http://localhost:3000/cidades/pdf', {
+    // headers: {
+    //   Authorization: authorization,
+    // },
+  });
+  console.log(resposta);
+  download(await resposta.blob(), 'application/x-pdf', 'cidades.pdf');
+}
+
+buttonPDF.addEventListener('click', async () => {
+  await baixarPdf();
+});
 
 buscarCidade();
