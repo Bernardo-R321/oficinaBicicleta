@@ -50,6 +50,6 @@ router.post('/ordemServicoPeca', validarPayload, ordemServicoPecaController.crea
 
 router.put('/ordemServicoPeca/:id', validarPayload, validarSeExiste, ordemServicoPecaController.update);
 
-router.delete('/ciordemServicoPeca/:id', validarSeExiste, ordemServicoPecaController.delete);
+router.delete('/ordemServicoPeca/:id', validarSeExiste, ordemServicoPecaController.delete);
 
 export default router;
