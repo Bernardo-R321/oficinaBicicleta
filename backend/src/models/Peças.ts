@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import { Permissao } from "./permissao";
+import { OneToMany } from "typeorm/browser";
 
 @Entity('peças')
 export class Peças extends BaseEntity{
@@ -14,5 +15,8 @@ export class Peças extends BaseEntity{
 
     @Column()
     public valor: Number;
+
+    @OneToMany(() => Permissao, (permissao) => permissao.peças)
+    public permissao: Promise<Permissao[]>;
 
 }

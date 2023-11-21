@@ -2,6 +2,9 @@ import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "t
 import { Usuarios } from "./usuario";
 import { Status } from "./status";
 import { Clientes } from "./clientes";
+import { Permissao } from "./permissao";
+import { OneToMany } from "typeorm/browser";
+
 
 @Entity('ordens')
 export class OrdemServico extends BaseEntity {
@@ -40,4 +43,8 @@ export class OrdemServico extends BaseEntity {
         eager: true
     })
     public cliente: Clientes;
+
+    @OneToMany(() => Permissao, (permissao) => permissao.ordemServiço)
+    public permissao: Promise<Permissao[]>;
+
 }

@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { OrdemServico } from "./OrdemServico";
+import { Permissao } from "./permissao";
 
 @Entity('usuarios')
 export class Usuarios extends BaseEntity {
@@ -10,12 +11,15 @@ export class Usuarios extends BaseEntity {
     @Column()
     public nome: string
 
-    @Column()
+    @Column({ unique: true })
     public email: string
 
-    @Column()
+    @Column({ select: false })
     public senha: string
 
     @OneToMany(() => OrdemServico, (ordem) => ordem.usuario)
-    public ordemServico: OrdemServico[]
+    public ordemServico: OrdemServico[];
+
+    @OneToMany(() => Permissao, (permissao) => permissao.usuario)
+    public permissao: Promise<Permissao[]>;
 }
