@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { OrdemServico } from "./OrdemServico";
-
+import { Permissao } from "./permissao";
 
 @Entity('status')
 export class Status extends BaseEntity {
@@ -14,6 +14,9 @@ export class Status extends BaseEntity {
   public tipo: string;
 
   @OneToMany(() => OrdemServico, (ordem) => ordem.status)
-  public ordemServico: OrdemServico[]
+  public ordemServico: OrdemServico[];
+
+  @OneToMany(() => Permissao, (permissao) => permissao.status)
+  public permissao: Promise<Permissao[]>;
 
 }
