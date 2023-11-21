@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { Clientes } from '../models/clientes';
 import { ClientesController } from '../controller/ClienteController';
 
-async function validarPayload (req: Request, res: Response, next: NextFunction): Promise<Response|void>{
+async function validarPayload(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   let schema = yup.object({
     nome: yup.string().min(3).max(255).required(),
     cpf: yup.string().min(3).max(11).required(),
@@ -15,31 +15,31 @@ async function validarPayload (req: Request, res: Response, next: NextFunction):
 
   let payload = req.body;
 
-  try{
-  let resultado = await schema.validate(payload, { abortEarly: false, stripUnknown: true });
-  return next();
-  }catch(error){
-    if (error){
-      if (error instanceof yup.ValidationError){
-        return res.status(400).json({errors: error.errors});
+  try {
+    let resultado = await schema.validate(payload, { abortEarly: false, stripUnknown: true });
+    return next();
+  } catch (error) {
+    if (error) {
+      if (error instanceof yup.ValidationError) {
+        return res.status(400).json({ errors: error.errors });
       }
-      return res.status(500).json({ error: 'Ops! Algo deu errado!'});
+      return res.status(500).json({ error: 'Ops! Algo deu errado!' });
     }
 
   }
 }
 
-async function validarSeExiste (req: Request, res: Response, next: NextFunction): Promise<Response|void> {
-    let id = Number(req.params.id);
+async function validarSeExiste(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+  let id = Number(req.params.id);
 
-    let cliente: Clientes|null = await Clientes.findOneBy({ id });
-    if (! cliente) {
-      return res.status(422).json({ error: 'Cliente não encontrado!' });
-    }
+  let cliente: Clientes | null = await Clientes.findOneBy({ id });
+  if (!cliente) {
+    return res.status(422).json({ error: 'Cliente não encontrado!' });
+  }
 
   res.locals.cliente = cliente;
 
- return next();
+  return next();
 }
 
 
@@ -53,8 +53,12 @@ router.get('/clientes/:id', validarSeExiste, clientesController.find);
 
 router.post('/clientes', validarPayload, clientesController.create);
 
-router.put('/clientes/:id',validarPayload, validarSeExiste, clientesController.update);
+router.put('/clientes/:id', validarPayload, validarSeExiste, clientesController.update);
 
 router.delete('/clientes/:id', validarSeExiste, clientesController.delete);
+
+router.get('/clientePdf', clientesController.pdf);
+
+router.get('/clienteCsv', clientesController.listCsv);
 
 export default router;

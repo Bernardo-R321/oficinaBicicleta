@@ -95,8 +95,17 @@
     <div class="row">
       <div class="col-12 mb-2 d-flex align-items-center justify-content-between">
         <h2>Usuário</h2>
-        <div>
-        <a class="btn btn-outline-success btn-sm" href="usuarioFormulario.html">Cadastrar</a>
+        <div style="display: flex; gap: 5px;">
+          <a class="btn btn-outline-success" href="usuarioFormulario.html">Cadastrar</a>
+          <div class="dropdown">
+            <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Opções
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><button class="dropdown-item" id="pdf">Exportar PDF</button></li>
+              <li><button class="dropdown-item" id="csv">Exportar CSV</button></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="col-12">
