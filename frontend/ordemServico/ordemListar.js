@@ -29,6 +29,7 @@ async function buscarOrdemServico() {
     tdAcoes.innerHTML = `
       <a class="btn btn-outline-primary btn-sm" href="ordemFormulario.html?id=${ordem.id}">Editar</a>
       <button class="btn btn-outline-danger btn-sm" onclick="excluir(${ordem.id})">Excluir</button>
+      <button class="btn btn-outline-secondary btn-sm" onclick="enviarEmail(${ordem.id})">Enviar Email</button>
     `;
 
     tdAcoes.classList = 'text-center';
@@ -94,6 +95,16 @@ function download(content, mimeType, filename) {
   a.setAttribute('href', url);
   a.setAttribute('download', filename);
   a.click();
+}
+
+async function enviarEmail(id) {
+  let resposta = await fetch('http://localhost:3000/enviarEmail/' + id, {
+    headers: {
+      'Content-type': 'application/json',
+      Accept: 'appplication/json',
+    },
+    method: 'POST',
+  });
 }
 
 buscarOrdemServico();

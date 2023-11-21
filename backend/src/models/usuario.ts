@@ -20,6 +20,6 @@ export class Usuarios extends BaseEntity {
     @OneToMany(() => OrdemServico, (ordem) => ordem.usuario)
     public ordemServico: OrdemServico[];
 
-    @OneToMany(() => Permissao, (permissao) => permissao.usuario)
-    public permissao: Promise<Permissao[]>;
+    // @OneToMany(() => Permissao, (permissao) => permissao.usuario)
+    // public permissao: Promise<Permissao[]>;
 }

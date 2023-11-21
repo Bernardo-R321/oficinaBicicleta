@@ -15,7 +15,7 @@ async function buscarCidade() {
     tdNome.innerText = item.nome;
     tdTipo.innerHTML = item.tipo;
     tdAcoes.innerHTML = `
-      <a class="btn btn-outline-primary btn-sm" href="cidadeFormulario.html?id=${item.id}">Editar</a>
+      <a class="btn btn-outline-primary btn-sm" href="statusFormulario.html?id=${item.id}">Editar</a>
       <button class="btn btn-outline-danger btn-sm" onclick="excluir(${item.id})">Excluir</button>
     `;
 

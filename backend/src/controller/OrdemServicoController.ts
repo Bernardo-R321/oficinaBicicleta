@@ -17,7 +17,7 @@ export class OrdemServicoController {
 
     async create(req: Request, res: Response): Promise<Response> {
         let body = req.body;
-
+        console.log('CHEGUEI AQUI!');
         let status: Status | null = await Status.findOneBy({ "id": body.id_status })
         if (status === null) {
             return res.status(422).json({ "error": "Status não encontado!" });
@@ -30,7 +30,7 @@ export class OrdemServicoController {
 
         let cliente: Clientes | null = await Clientes.findOneBy({ "id": body.id_cliente })
         if (cliente === null) {
-            return res.status(422).json({ "error": "Cliente não encontado!" });
+            return res.status(422).json({ "error": "Cliente não encontrado!" });
         }
 
         let OS: OrdemServico = await OrdemServico.create({
@@ -68,21 +68,23 @@ export class OrdemServicoController {
         let body = req.body;
         let OS: OrdemServico = res.locals.OS
 
+        console.log(body);
+
         if (OS === null) {
             return res.status(422).json({ "error": "Ordem de Serviço não encontrada!" });
         }
 
-        let status: Status | null = await Status.findOneBy({ "id": body.status_id })
+        let status: Status | null = await Status.findOneBy({ "id": body.id_status })
         if (status === null) {
             return res.status(422).json({ "error": "Status não encontado!" });
         }
 
-        let usuario: Usuarios | null = await Usuarios.findOneBy({ "id": body.usuario_id })
+        let usuario: Usuarios | null = await Usuarios.findOneBy({ "id": body.id_usuario })
         if (usuario === null) {
             return res.status(422).json({ "error": "Usuário não encontado!" });
         }
 
-        let cliente: Clientes | null = await Clientes.findOneBy({ "id": body.cliente_id })
+        let cliente: Clientes | null = await Clientes.findOneBy({ "id": body.id_cliente })
         if (cliente === null) {
             return res.status(422).json({ "error": "Cliente não encontado!" });
         }

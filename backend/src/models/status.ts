@@ -16,7 +16,11 @@ export class Status extends BaseEntity {
   @OneToMany(() => OrdemServico, (ordem) => ordem.status)
   public ordemServico: OrdemServico[];
 
-  @OneToMany(() => Permissao, (permissao) => permissao.status)
-  public permissao: Promise<Permissao[]>;
+  // @OneToMany(() => Permissao, (permissao) => permissao.status)
+  // public permissao: Promise<Permissao[]>;
+
+  ///Tipos de status: 1 novo
+  /// 2 fazendo
+  /// 3 pronto
 
 }

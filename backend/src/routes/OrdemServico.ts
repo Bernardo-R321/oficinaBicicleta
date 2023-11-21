@@ -2,6 +2,7 @@ import { NextFunction, Request, Response, Router } from 'express';
 import * as yup from 'yup';
 import { OrdemServico } from '../models/OrdemServico';
 import { OrdemServicoController } from '../controller/OrdemServicoController';
+import { StatusController } from '../controller/StatusController';
 
 async function validarPayload(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
   let schema = yup.object({
@@ -51,6 +52,8 @@ let router: Router = Router();
 
 let OSController: OrdemServicoController = new OrdemServicoController();
 
+let statusController: StatusController = new StatusController();
+
 router.get('/ordemservico', OSController.list);
 
 router.get('/ordemservico/:id', validarSeExiste, OSController.find);
@@ -64,5 +67,7 @@ router.delete('/ordemservico/:id', validarSeExiste, OSController.delete);
 router.get('/ordemservicoPdf', OSController.pdf);
 
 router.get('/ordemservicoCsv', OSController.listCsv);
+
+router.post('/enviarEmail/:id', statusController.sendEmail);
 
 export default router;
