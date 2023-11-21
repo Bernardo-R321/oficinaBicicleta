@@ -2,7 +2,7 @@ import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColum
 import { Usuarios } from "./usuario";
 import { Status } from "./status";
 import { Clientes } from "./clientes";
-import { Permissao } from "./permissao";
+// import { Permissao } from "./permissao";
 
 @Entity('ordens')
 export class OrdemServico extends BaseEntity {

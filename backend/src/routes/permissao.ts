@@ -1,19 +1,19 @@
-import { Router } from "express";
+// import { Router } from "express";
 
-import { PermissaoController } from "../controller/PermissaoController";
+// import { PermissaoController } from "../controller/PermissaoController";
 
-let router: Router = Router();
+// let router: Router = Router();
 
-let permissaoController: PermissaoController = new PermissaoController();
+// let permissaoController: PermissaoController = new PermissaoController();
 
-router.get("/permissoes", permissaoController.list);
+// router.get("/permissoes", permissaoController.list);
 
-router.post("/permissoes", permissaoController.create);
+// router.post("/permissoes", permissaoController.create);
 
-router.put("/permissoes/:id", permissaoController.update);
+// router.put("/permissoes/:id", permissaoController.update);
 
-// router.delete("/permissoes/:id", permissoesController.delete);
+// // router.delete("/permissoes/:id", permissoesController.delete);
 
-router.get("/permissoes/:id", permissaoController.list);
+// router.get("/permissoes/:id", permissaoController.list);
 
-export default router;
+// export default router;

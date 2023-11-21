@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { OrdemServico } from "./OrdemServico";
-import { Permissao } from "./permissao";
+// import { Permissao } from "./permissao";
 
 @Entity('usuarios')
 export class Usuarios extends BaseEntity {

@@ -1,112 +1,112 @@
-import {
-    BaseEntity,
-    Column,
-    Entity,
-    JoinColumn,
-    ManyToOne,
-    OneToMany,
-    PrimaryGeneratedColumn,
-  } from "typeorm";
-  import { Cidades } from "./cidades";
-  import { Clientes } from "./clientes";
-  import { OrdemServico } from "./OrdemServico";
-  import { OrdemServicoPeca } from "./ordemServiçoPeca";
-  import { Pecas } from "./Peças";
-  import { Status } from "./status";
-  import { Usuarios } from "./usuario";
-  
-  @Entity("permissao")
-  export class Permissao extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    public id: number;
-  
-    @Column({
-      type: "int",
-    })
-    public idUsuario: number;
-  
-    @Column({
-      type: "int",
-    })
-    public idCidade: number;
+// import {
+//   BaseEntity,
+//   Column,
+//   Entity,
+//   JoinColumn,
+//   ManyToOne,
+//   OneToMany,
+//   PrimaryGeneratedColumn,
+// } from "typeorm";
+// import { Cidades } from "./cidades";
+// import { Clientes } from "./clientes";
+// import { OrdemServico } from "./OrdemServico";
+// import { OrdemServicoPeca } from "./ordemServiçoPeca";
+// import { Pecas } from "./Peças";
+// import { Status } from "./status";
+// import { Usuarios } from "./usuario";
 
-    @Column({
-        type: "int",
-      })
-      public idCliente: number;
+// @Entity("permissao")
+// export class Permissao extends BaseEntity {
+//   @PrimaryGeneratedColumn()
+//   public id: number;
 
-      @Column({
-        type: "int",
-      })
-      public idOrdemServico: number;
+//   @Column({
+//     type: "int",
+//   })
+//   public idUsuario: number;
 
-      @Column({
-        type: "int",
-      })
-      public idOrdemServicoPeca: number;
+//   @Column({
+//     type: "int",
+//   })
+//   public idCidade: number;
 
-      @Column({
-        type: "int",
-      })
-      public idPecas: number;
+//   @Column({
+//     type: "int",
+//   })
+//   public idCliente: number;
 
-      @Column({
-        type: "int",
-      })
-      public idStatus: number;
+//   @Column({
+//     type: "int",
+//   })
+//   public idOrdemServico: number;
+
+//   // @Column({
+//   //   type: "int",
+//   // })
+//   // public idOrdemServicoPeca: number;
+
+//   @Column({
+//     type: "int",
+//   })
+//   public idPecas: number;
+
+//   @Column({
+//     type: "int",
+//   })
+//   public idStatus: number;
 
 
-  
-    @ManyToOne(() => Usuarios, (usuario) => usuario.permissao, { eager: true })
-    @JoinColumn({ name: "idUsuario" })
-    public usuario: Usuarios;
-  
-    @ManyToOne(() => Cidades, (cidade) => cidade.permissao, { eager: true })
-    @JoinColumn({ name: "idCidade" })
-    public cidade: Cidades;
 
-@Entity("permissao")
-export class Permissao extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  public id: number;
+//   @ManyToOne(() => Usuarios, (usuario) => usuario.permissao, { eager: true })
+//   @JoinColumn({ name: "idUsuario" })
+//   public usuario: Usuarios;
 
-    @ManyToOne(() => OrdemServico, (ordemServiço) => ordemServiço.permissao, { eager: true })
-    @JoinColumn({ name: "idOrdemServico" })
-    public ordemServiço: OrdemServico;
+//   @ManyToOne(() => Cidades, (cidade) => cidade.permissao, { eager: true })
+//   @JoinColumn({ name: "idCidade" })
+//   public cidade: Cidades;
 
-    @ManyToOne(() => OrdemServicoPeca, (ordemServiçoPeca) => ordemServiçoPeca.permissao, { eager: true })
-    @JoinColumn({ name: "idOrdemServicoPeca" })
-    public ordemServiçoPeca: OrdemServicoPeca;
+//   @Entity("permissao")
+//   export class Permissao extends BaseEntity {
+//   @PrimaryGeneratedColumn()
+//   public id: number;
 
-    @ManyToOne(() => Pecas, (pecas) => pecas.permissao, { eager: true })
-    @JoinColumn({ name: "idPecas" })
-    public pecas: Pecas;
+//   @ManyToOne(() => OrdemServico, (ordemServiço) => ordemServiço.permissao, { eager: true })
+//   @JoinColumn({ name: "idOrdemServico" })
+//   public ordemServiço: OrdemServico;
 
-  // @ManyToOne(() => Usuarios, (usuario) => usuario.permissao, { eager: true })
-  // @JoinColumn({ name: "idUsuario" })
-  // public usuario: Usuarios;
+//   @ManyToOne(() => OrdemServicoPeca, (ordemServiçoPeca) => ordemServiçoPeca.permissao, { eager: true })
+//   @JoinColumn({ name: "idOrdemServicoPeca" })
+//   public ordemServiçoPeca: OrdemServicoPeca;
 
-  // @ManyToOne(() => Cidades, (cidade) => cidade.permissao, { eager: true })
-  // @JoinColumn({ name: "idCidade" })
-  // public cidade: Cidades;
+//   @ManyToOne(() => Pecas, (pecas) => pecas.permissao, { eager: true })
+//   @JoinColumn({ name: "idPecas" })
+//   public pecas: Pecas;
 
-  // @ManyToOne(() => Clientes, (cliente) => cliente.permissao, { eager: true })
-  // @JoinColumn({ name: "idCLiente" })
-  // public cliente: Clientes;
+//   // @ManyToOne(() => Usuarios, (usuario) => usuario.permissao, { eager: true })
+//   // @JoinColumn({ name: "idUsuario" })
+//   // public usuario: Usuarios;
 
-  // @ManyToOne(() => OrdemServico, (ordemServiço) => ordemServiço.permissao, { eager: true })
-  // @JoinColumn({ name: "idOrdemServiço" })
-  // public ordemServiço: OrdemServico;
+//   // @ManyToOne(() => Cidades, (cidade) => cidade.permissao, { eager: true })
+//   // @JoinColumn({ name: "idCidade" })
+//   // public cidade: Cidades;
 
-  @ManyToOne(() => OrdemServicoPeca, (ordemServiçoPeca) => ordemServiçoPeca.permissao, { eager: true })
-  @JoinColumn({ name: "idOrdemServiçoPeca" })
-  public ordemServiçoPeca: OrdemServicoPeca;
+//   // @ManyToOne(() => Clientes, (cliente) => cliente.permissao, { eager: true })
+//   // @JoinColumn({ name: "idCLiente" })
+//   // public cliente: Clientes;
 
-  @ManyToOne(() => Peças, (peças) => peças.permissao, { eager: true })
-  @JoinColumn({ name: "idpeças" })
-  public peças: Peças;
+//   // @ManyToOne(() => OrdemServico, (ordemServiço) => ordemServiço.permissao, { eager: true })
+//   // @JoinColumn({ name: "idOrdemServiço" })
+//   // public ordemServiço: OrdemServico;
 
-  // @ManyToOne(() => Status, (status) => status.permissao, { eager: true })
-  // @JoinColumn({ name: "idstatus" })
-  // public status: Status;
-}
+//   @ManyToOne(() => OrdemServicoPeca, (ordemServiçoPeca) => ordemServiçoPeca.permissao, { eager: true })
+//   @JoinColumn({ name: "idOrdemServiçoPeca" })
+//   public ordemServiçoPeca: OrdemServicoPeca;
+
+//   @ManyToOne(() => Peças, (peças) => peças.permissao, { eager: true })
+//   @JoinColumn({ name: "idpeças" })
+//   public peças: Peças;
+
+//   // @ManyToOne(() => Status, (status) => status.permissao, { eager: true })
+//   // @JoinColumn({ name: "idstatus" })
+//   // public status: Status;
+// }

@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Cidades } from "./cidades";
 import { OrdemServico } from "./OrdemServico";
-import { Permissao } from "./permissao";
+// import { Permissao } from "./permissao";
 
 @Entity('clientes')
 export class Clientes extends BaseEntity {

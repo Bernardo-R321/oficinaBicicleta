@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { Clientes } from "./clientes";
-import { Permissao } from "./permissao";
+// import { Permissao } from "./permissao";
 
 @Entity('cidades')
 export class Cidades extends BaseEntity {

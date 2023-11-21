@@ -7,7 +7,7 @@ import statusRoutes from './routes/status';
 import pecasRoutes from './routes/peças';
 import ordemRoutes from './routes/OrdemServico';
 import ordemServicoPecaRoutes from './routes/ordemServicoPeca';
-import permissaoRoutes from './routes/permissao';
+// import permissaoRoutes from './routes/permissao';
 import autenticacaoRoutes from './routes/autenticacao';
 import { basicAuth } from './middlewares/basic-auth';
 
@@ -30,7 +30,7 @@ server.use(statusRoutes);
 server.use(ordemRoutes);
 server.use(pecasRoutes);
 server.use(ordemServicoPecaRoutes);
-server.use(permissaoRoutes);
+// server.use(permissaoRoutes);
 
 export default {
     start() {
