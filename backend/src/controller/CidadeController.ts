@@ -47,8 +47,29 @@ export class CidadesController {
 
     async pdf(req: Request, res: Response) {
         let dados = await Cidades.find();
-        let html = `<h1>Lista de cidades/h1>`;
-        html += `<table>
+        console.log(dados);
+
+        let html: string = `<style>
+    *{
+      font-family: "Arial";
+    }
+    table{
+      width:100%;
+      text-align: left;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+    table td{
+      padding: 10px
+    }
+    table th{
+      padding: 10px
+    }
+    </style>
+    <h1>Lista de cidades</h1>
+  <table border="1">`;
+
+        html += `
         <tr>
         <th>ID</th>
         <th>Nome</th>
@@ -82,5 +103,21 @@ export class CidadesController {
         await browser.close();
         return pdfBuffer;
 
+    }
+
+    async listCsv(req: Request, res: Response): Promise<Response> {
+
+        let cidades: Cidades[] = await Cidades.find()
+
+        let header = '"ID";"Nome"\n';
+        let csv = header;
+
+        cidades.forEach((element) => {
+            csv += `"${element.id}";"${element.nome}"\n`;
+        });
+
+        res.append("Content-Type", "text/csv");
+        res.attachment("usuarios.csv");
+        return res.status(200).send(csv);
     }
 }

@@ -61,4 +61,8 @@ router.put('/ordemservico/:id', validarPayload, validarSeExiste, OSController.up
 
 router.delete('/ordemservico/:id', validarSeExiste, OSController.delete);
 
+router.get('/ordemservicoPdf', OSController.pdf);
+
+router.get('/ordemservicoCsv', OSController.listCsv);
+
 export default router;

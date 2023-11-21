@@ -1,6 +1,8 @@
 let corpoTabela = document.getElementById('corpo-tabela');
+let buttonPDF = document.getElementById('pdf');
+let buttonCSV = document.getElementById('csv');
 
-async function buscarUsuario () {
+async function buscarUsuario() {
   let resposta = await fetch('http://localhost:3000/usuarios');
   let usuarios = await resposta.json();
 
@@ -17,7 +19,7 @@ async function buscarUsuario () {
       <button class="btn btn-outline-danger btn-sm" onclick="excluir(${usuario.id})">Excluir</button>
     `;
 
-    tdAcoes.classList = "text-center";
+    tdAcoes.classList = 'text-center';
     tr.appendChild(tdNome);
     tr.appendChild(tdEmail);
     tr.appendChild(tdAcoes);
@@ -26,16 +28,55 @@ async function buscarUsuario () {
   }
 }
 
-async function excluir (id) {
-  let confirma = confirm("Deseja excluir esse usuário? Esta ação não pode ser revertida.")
-  if(confirma) {
+async function excluir(id) {
+  let confirma = confirm(
+    'Deseja excluir esse usuário? Esta ação não pode ser revertida.'
+  );
+  if (confirma) {
     await fetch('http://localhost:3000/usuarios/' + id, {
-    method: 'DELETE'
-  });
+      method: 'DELETE',
+    });
 
-  window.location.reload();
+    window.location.reload();
   }
-  
+}
+
+async function baixarPdf() {
+  let resposta = await fetch('http://localhost:3000/usuarioPdf', {
+    headers: {
+      'Content-type': 'application/json',
+      Accept: 'appplication/json',
+    },
+  });
+  console.log(resposta);
+  download(await resposta.blob(), 'application/x-pdf', 'Usuarios.pdf');
+}
+
+buttonPDF.addEventListener('click', async () => {
+  await baixarPdf();
+});
+
+buttonCSV.addEventListener('click', async () => {
+  await baixarCsv();
+});
+
+async function baixarCsv() {
+  let csv = await fetch('http://localhost:3000/usuarioCsv', {
+    headers: {
+      'Content-type': 'application/json',
+      Acccept: 'appplication/json',
+    },
+  });
+  download(await csv.text(), 'text/csv', 'Usuarios.csv');
+}
+
+function download(content, mimeType, filename) {
+  const a = document.createElement('a');
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  a.setAttribute('href', url);
+  a.setAttribute('download', filename);
+  a.click();
 }
 
 buscarUsuario();

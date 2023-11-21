@@ -52,6 +52,8 @@ router.put('/cidades/:id', validarPayload, validarSeExiste, cidadeController.upd
 
 router.delete('/cidades/:id', validarSeExiste, cidadeController.delete);
 
-router.get('/cidades/pdf', cidadeController.pdf);
+router.get('/cidadePdf', cidadeController.pdf);
+
+router.get('/cidadeCsv', cidadeController.listCsv);
 
 export default router;

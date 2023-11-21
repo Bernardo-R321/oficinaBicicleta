@@ -54,4 +54,8 @@ router.put('/status/:id', validarPayload, validarSeExiste, statusController.upda
 
 router.delete('/status/:id', validarSeExiste, statusController.delete);
 
+router.get('/statusPdf', statusController.pdf);
+
+router.get('/statusCsv', statusController.listCsv);
+
 export default router;
