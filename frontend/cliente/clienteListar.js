@@ -1,4 +1,6 @@
 let corpoTabela = document.getElementById('corpo-tabela');
+let buttonPDF = document.getElementById('pdf');
+let buttonCSV = document.getElementById('csv');
 
 async function buscarCliente() {
   let resposta = await fetch('http://localhost:3000/clientes');
@@ -37,6 +39,44 @@ async function excluir(id) {
 
     window.location.reload();
   }
+}
+
+async function baixarPdf() {
+  let resposta = await fetch('http://localhost:3000/clientePdf', {
+    headers: {
+      'Content-type': 'application/json',
+      Accept: 'appplication/json',
+    },
+  });
+  console.log(resposta);
+  download(await resposta.blob(), 'application/x-pdf', 'Clientes.pdf');
+}
+
+buttonPDF.addEventListener('click', async () => {
+  await baixarPdf();
+});
+
+buttonCSV.addEventListener('click', async () => {
+  await baixarCsv();
+});
+
+async function baixarCsv() {
+  let csv = await fetch('http://localhost:3000/clienteCsv', {
+    headers: {
+      'Content-type': 'application/json',
+      Acccept: 'appplication/json',
+    },
+  });
+  download(await csv.text(), 'text/csv', 'Clientes.csv');
+}
+
+function download(content, mimeType, filename) {
+  const a = document.createElement('a');
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  a.setAttribute('href', url);
+  a.setAttribute('download', filename);
+  a.click();
 }
 
 buscarCliente();

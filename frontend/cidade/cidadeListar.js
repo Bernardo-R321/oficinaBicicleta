@@ -1,5 +1,6 @@
 let corpoTabela = document.getElementById('corpo-tabela');
 let buttonPDF = document.getElementById('pdf');
+let buttonCSV = document.getElementById('csv');
 
 async function buscarCidade() {
   let resposta = await fetch('http://localhost:3000/cidades');
@@ -47,10 +48,11 @@ function download(content, mimeType, filename) {
 }
 
 async function baixarPdf() {
-  let resposta = await fetch('http://localhost:3000/cidades/pdf', {
-    // headers: {
-    //   Authorization: authorization,
-    // },
+  let resposta = await fetch('http://localhost:3000/cidadePdf', {
+    headers: {
+      'Content-type': 'application/json',
+      Accept: 'appplication/json',
+    },
   });
   console.log(resposta);
   download(await resposta.blob(), 'application/x-pdf', 'cidades.pdf');
@@ -59,5 +61,19 @@ async function baixarPdf() {
 buttonPDF.addEventListener('click', async () => {
   await baixarPdf();
 });
+
+buttonCSV.addEventListener('click', async () => {
+  await baixarCsv();
+});
+
+async function baixarCsv() {
+  let csv = await fetch('http://localhost:3000/cidadeCsv', {
+    headers: {
+      'Content-type': 'application/json',
+      Acccept: 'appplication/json',
+    },
+  });
+  download(await csv.text(), 'text/csv', 'Cidades.csv');
+}
 
 buscarCidade();

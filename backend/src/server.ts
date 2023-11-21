@@ -23,8 +23,6 @@ server.use(cidadeRoutes);
 server.use(clienteRoutes);
 server.use(statusRoutes);
 server.use(ordemRoutes);
-server.use(peca);
-server.use(ordemServicoPeca);
 
 export default {
     start() {
