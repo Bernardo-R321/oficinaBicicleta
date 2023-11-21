@@ -11,7 +11,7 @@ import {
   import { Clientes } from "./clientes";
   import { OrdemServico } from "./OrdemServico";
   import { OrdemServicoPeca } from "./ordemServiçoPeca";
-  import { Peças } from "./Peças";
+  import { Pecas } from "./Peças";
   import { Status } from "./status";
   import { Usuarios } from "./usuario";
   
@@ -21,11 +21,6 @@ import {
     public id: number;
   
     @Column({
-      type: "char",
-    })
-    public tipo: string;
-  
-    @Column({
       type: "int",
     })
     public idUsuario: number;
@@ -33,7 +28,34 @@ import {
     @Column({
       type: "int",
     })
-    public idPagina: number;
+    public idCidade: number;
+
+    @Column({
+        type: "int",
+      })
+      public idCliente: number;
+
+      @Column({
+        type: "int",
+      })
+      public idOrdemServico: number;
+
+      @Column({
+        type: "int",
+      })
+      public idOrdemServicoPeca: number;
+
+      @Column({
+        type: "int",
+      })
+      public idPecas: number;
+
+      @Column({
+        type: "int",
+      })
+      public idStatus: number;
+
+
   
     @ManyToOne(() => Usuarios, (usuario) => usuario.permissao, { eager: true })
     @JoinColumn({ name: "idUsuario" })
@@ -48,16 +70,16 @@ import {
     public cliente: Clientes;
 
     @ManyToOne(() => OrdemServico, (ordemServiço) => ordemServiço.permissao, { eager: true })
-    @JoinColumn({ name: "idOrdemServiço" })
+    @JoinColumn({ name: "idOrdemServico" })
     public ordemServiço: OrdemServico;
 
     @ManyToOne(() => OrdemServicoPeca, (ordemServiçoPeca) => ordemServiçoPeca.permissao, { eager: true })
-    @JoinColumn({ name: "idOrdemServiçoPeca" })
+    @JoinColumn({ name: "idOrdemServicoPeca" })
     public ordemServiçoPeca: OrdemServicoPeca;
 
-    @ManyToOne(() => Peças, (peças) => peças.permissao, { eager: true })
-    @JoinColumn({ name: "idpeças" })
-    public peças: Peças;
+    @ManyToOne(() => Pecas, (pecas) => pecas.permissao, { eager: true })
+    @JoinColumn({ name: "idPecas" })
+    public pecas: Pecas;
 
     @ManyToOne(() => Status, (status) => status.permissao, { eager: true })
     @JoinColumn({ name: "idstatus" })
