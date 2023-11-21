@@ -63,6 +63,8 @@ form.addEventListener('submit', async (event) => {
     valorOS,
   };
 
+  console.log(payload);
+
   let url = 'http://localhost:3000/ordemservico';
   let method = 'POST';
   if (id) {

@@ -35,7 +35,7 @@ export class Clientes extends BaseEntity {
     @OneToMany(() => OrdemServico, (ordem) => ordem.cliente)
     public ordemServico: OrdemServico[];
 
-    @OneToMany(() => Permissao, (permissao) => permissao.cliente)
-    public permissao: Promise<Permissao[]>;
+    // @OneToMany(() => Permissao, (permissao) => permissao.cliente)
+    // public permissao: Promise<Permissao[]>;
 
 }
