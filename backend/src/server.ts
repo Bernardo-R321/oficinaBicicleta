@@ -7,10 +7,12 @@ import statusRoutes from './routes/status';
 import pecasRoutes from './routes/peças';
 import ordemRoutes from './routes/OrdemServico';
 import ordemServicoPecaRoutes from './routes/ordemServicoPeca';
+import permissaoRoutes from './routes/permissao';
+import autenticacaoRoutes from './routes/autenticacao';
+import { basicAuth } from './middlewares/basic-auth';
 
 
 let server: Express = express();
-
 let port: number = Number(process.env.SERVER_PORT || 3000);
 
 server.use(cors());
@@ -20,13 +22,15 @@ server.use((req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-server.use(usuarioRoutes);
+server.use(autenticacaoRoutes);
+server.use(basicAuth, usuarioRoutes);
 server.use(cidadeRoutes);
 server.use(clienteRoutes);
 server.use(statusRoutes);
 server.use(ordemRoutes);
 server.use(pecasRoutes);
 server.use(ordemServicoPecaRoutes);
+server.use(permissaoRoutes);
 
 export default {
     start() {
